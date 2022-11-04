@@ -6,6 +6,7 @@ import heroSquire from '../../assets/image/hero-square-2.png'
 import hero1 from '../../assets/image/hero-1.jpg'
 import hero2 from '../../assets/image/hero-2.jpg'
 import hero3 from '../../assets/image/hero-3.jpg'
+import heroCircle from '../../assets/image/hero-circle-2.png'
 import { BiSearchAlt2  } from "react-icons/bi";
 const Banner = () => {
     return (
@@ -42,7 +43,9 @@ const Banner = () => {
                </div>
                 <div className='z-10 relative mt-5 right-20'>
                     <img className='w-96 h-72 ' src={hero2} alt="" />
+                    <img className='w-10 left-64 animate- relative z-10  ' src={heroCircle} alt="" />
                     <img className='w-72 right-12 mt-8 relative z-10  ' src={hero3} alt="" />
+
                 </div>
                 </div>
                </div>
