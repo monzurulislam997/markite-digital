@@ -1,0 +1,147 @@
+[
+    {
+        "name": "Bizzerer - Consulting Business",
+        "type": "Bussiness",
+        "price": "19",
+        "img": "https://res.cloudinary.com/dj7z2d6lv/image/upload/v1667563773/Markite/zibber_fsfw4f.jpg",
+        "author": "Markite Jeddu",
+        "sale": 44
+    },
+    {
+        "name": "Aermico - Spa and Beauty",
+        "type": "Bussiness",
+        "price": 99,
+        "img": "https://res.cloudinary.com/dj7z2d6lv/image/upload/v1667563772/Markite/termico_iuupll.jpg",
+        "author": "Markite Hanita",
+        "sale": 259
+    },
+    {
+        "name": "GovtPress - Municipal and Govt",
+        "type": "Bussiness",
+        "price": 193,
+        "img": "https://res.cloudinary.com/dj7z2d6lv/image/upload/v1667563770/Markite/govetpress_ye4f1z.jpg",
+        "author": "Hanita",
+        "sale": 88
+    },
+    {
+        "name": "Medinet - Medical ",
+        "type": "Medical",
+        "price": 59,
+        "img": "https://res.cloudinary.com/dj7z2d6lv/image/upload/v1667563771/Markite/meidnet_j05net.jpg",
+        "author": "Markite ",
+        "sale": 88
+    },
+    {
+        "name": "Sycho - Psychology and Counseling ",
+        "type": "Counseling",
+        "price": 39,
+        "img": "https://res.cloudinary.com/dj7z2d6lv/image/upload/v1667563771/Markite/sycho_1_atutye.jpg",
+        "author": "Json Holer ",
+        "sale": 29
+    },
+    {
+        "name": "Beakai - Business Corporate",
+        "type": "Corporate",
+        "price": 59,
+        "img": "https://res.cloudinary.com/dj7z2d6lv/image/upload/v1667563770/Markite/beakai_e5xoox.jpg",
+        "author": "Markite ",
+        "sale": 269
+    },
+    {
+        "name": "Klinixer – Cleaning Services",
+        "type": "CLeaning",
+        "price": 30,
+        "img": "https://res.cloudinary.com/dj7z2d6lv/image/upload/v1667563770/Markite/klinixer_zxp7tv.jpg",
+        "author": "Markite Hetter ",
+        "sale": 35
+    },
+    {
+        "name": "Landco – Gardening ",
+        "type": "Construction",
+        "price": 30,
+        "img": "https://res.cloudinary.com/dj7z2d6lv/image/upload/v1667563771/Markite/landco_exfi0t.jpg",
+        "author": "Markite philips ",
+        "sale": 33
+    },
+    {
+        "name": "Medicheck – Medical",
+        "type": "Technology",
+        "price": 30,
+        "img": "https://res.cloudinary.com/dj7z2d6lv/image/upload/v1667563771/Markite/medicheck_vqiych.jpg",
+        "author": "Markite ",
+        "sale": 33
+    },
+    {
+        "name": "Shupmax – Technology",
+        "type": "Technology",
+        "price": 90,
+        "img": "https://res.cloudinary.com/dj7z2d6lv/image/upload/v1667563771/Markite/shumpax_ydq5z7.jpg",
+        "author": "Markite ",
+        "sale": 11
+    },
+    {
+        "name": "Siniko – Digital Marketing",
+        "type": "Marketing",
+        "price": 65,
+        "img": "https://res.cloudinary.com/dj7z2d6lv/image/upload/v1667563771/Markite/siniko_m8giwz.jpg",
+        "author": "Markite ",
+        "sale": 321
+    },
+    {
+        "name": "Pixen – Printing Services Company",
+        "type": "Templates",
+        "price": 60,
+        "img": "https://res.cloudinary.com/dj7z2d6lv/image/upload/v1667563771/Markite/pixeen_r2yf3q.jpg",
+        "author": "Markite ",
+        "sale": 213
+    },
+    {
+        "name": "Retbo – Clean Minimal ",
+        "type": "Templates",
+        "price": 49,
+        "img": "https://res.cloudinary.com/dj7z2d6lv/image/upload/v1667563771/Markite/retro_ymgevt.jpg",
+        "author": "Markite ",
+        "sale": 13
+    },
+    {
+        "name": "BildPress – Construction",
+        "type": "Construction",
+        "price": 219,
+        "img": "https://res.cloudinary.com/dj7z2d6lv/image/upload/v1667563770/Markite/bildpress_ar77v7.jpg",
+        "author": "Bildbres ",
+        "sale": 23
+    },
+    {
+        "name": "Termico – Spa and Beauty",
+        "type": "Medical",
+        "price": 99,
+        "img": "https://res.cloudinary.com/dj7z2d6lv/image/upload/v1667563772/Markite/termico_iuupll.jpg",
+        "author": "Bildbres ",
+        "sale": 113
+    },
+    {
+        "name": "Herku hebla",
+        "type": "Bussiness",
+        "price": 23,
+        "img": "https://res.cloudinary.com/dj7z2d6lv/image/upload/v1667563771/Markite/meidnet_1_l5qp78.jpg",
+        "author": "Bildbres ",
+        "sale": 913
+    },
+    {
+        "name": "Reskia Jerih",
+        "type": "Bussiness",
+        "price": 99,
+        "img": "https://res.cloudinary.com/dj7z2d6lv/image/upload/v1667563772/Markite/termico_iuupll.jpg",
+        "author": "Markite Hanita",
+        "sale": 259
+    },
+    {
+        "name": "Gardening Templates",
+        "type": "Hobby",
+        "price": 120,
+        "img": "https://res.cloudinary.com/dj7z2d6lv/image/upload/v1667563771/Markite/landco_exfi0t.jpg",
+        "author": "Markite philips ",
+        "sale": 9
+    }
+
+]
