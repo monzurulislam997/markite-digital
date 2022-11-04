@@ -43,11 +43,12 @@ const Banner = () => {
                </div>
                 <div className='z-10 relative mt-5 right-20'>
                     <img className='w-96 h-72 ' src={hero2} alt="" />
-                    <img className='w-10 left-64 animate- relative z-10  ' src={heroCircle} alt="" />
+                    <img className='w-10 left-64 animate-bounce  relative z-10  ' src={heroCircle} alt="" />
                     <img className='w-72 right-12 mt-8 relative z-10  ' src={hero3} alt="" />
 
                 </div>
                 </div>
+                
                </div>
             </div >
     );

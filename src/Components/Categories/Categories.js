@@ -43,17 +43,22 @@ const Categories = () => {
                                 <img src={catagorie.img} alt="Shoes" className="rounded-xl" />
                             </figure>
                             <div className="card-body card-actions text-center justify-center ">
-                            <h1 className='card-title'>{catagorie.name}</h1>
-                                <button className="flex ml-2     hover:text-indigo-600 hover:font-bold">Explore More 
-                                
-                                <span className="mt-1  " ><AiFillCaretRight /></span>
-                                 </button> 
-                                
+                                <h1 className='card-title'>{catagorie.name}</h1>
+                                <button className="flex ml-2     hover:text-indigo-600 hover:font-bold">Explore More
+
+                                    <span className="mt-1  " ><AiFillCaretRight /></span>
+                                </button>
+
                             </div>
                         </div>
                     </>)
                 }
             </div>
+            <div className='text-center'>
+            <button className="py-3 px-8 hover:drop-shadow-2xl rounded-lg my-3 hover:text-cyan-400	 btn-primary">View All Catagories</button>
+          
+            </div>
+
         </div>
     );
 };
