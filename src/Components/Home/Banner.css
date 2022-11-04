@@ -1,0 +1,34 @@
+
+
+  .box {
+    animation: loader 15s infinite;
+     }
+  
+  @keyframes loader {
+    0% {
+      rotate: -240deg;
+    }
+
+    50%{
+        rotate:-100deg; }
+    75%{rotate:100deg; }
+    100% { rotate: -180deg;
+    }
+  }
+
+
+  .hero-1 {
+  
+    position: relative;
+   
+    animation: hero-1 15s ease-in-out infinite;
+  }
+  
+  @keyframes hero-1{
+    0%   { left:0px; top:0px;}
+    25%  { left:20px; top:0px;}
+    50%  { left:30px; top:0px;}
+    75%  { right:20px; top:0px;}
+  
+    100% {left:0px; top:0px;}
+  }
