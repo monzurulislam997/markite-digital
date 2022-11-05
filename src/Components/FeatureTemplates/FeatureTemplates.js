@@ -14,20 +14,21 @@ const FeatureTemplates = () => {
 
 
     return (
-        <div >
+        <div className='px-14 ml-10' >
             <div className='text-center'>
-                <h1 className='text-4xl  font-black '>Fea<span className='text-orange-600'>tu</span>red <br /> Templates  <span className='text-indigo-600'> of The Month</span> </h1>
+                <h1 className='text-4xl  font-black '>Featu<span className='text-orange-600'>re</span> <br /> Templates  <span className='text-indigo-600'> of The Month</span> </h1>
                 <p className='text-slate-600 mt-1'>All the templates are selected by customer preferences</p>
             </div>
-
-            <div >
+           
                 {/* card  */}
             <Bounce >
-                <div className='grid w-full mb-6  lg:grid-cols-3  my-3  ml-8 px-16 '>
+                <div className='grid w-full mb-6  lg:grid-cols-3  my-3    '>
                     {
                         features.slice(0,6).map(feature => <>
                             <div className="card w-5/6 bg-base-100 mb-4 drop-shadow-2xl">
-                                <figure><img className='p-3' src={feature.img}alt="Shoes" /></figure>
+                           <figure>
+                           <img className='p-3 rounded-lg transiton ease-in-out duration-1000	 hover:scale-150 hover:duration-1000' src={feature.img}alt="Shoes" />
+                           </figure>
                                
                                 <div    className="card-body">
                                     <h2 className="text-xl font-semibold">
@@ -39,7 +40,7 @@ const FeatureTemplates = () => {
                                     <p>{feature.sale} sales</p>
                                     </div>
                                    <div className="card-actions justify-end">
-                                   <p  className='bg-indigo-800 px-5 mt-1 py-1  hover:bg-cyan-600  text-white'>Preview </p>
+                                   <p  className='bg-indigo-800 px-5 mt-1 py-1 rounded-md    hover:bg-cyan-600  text-white'>Preview </p>
                                     <button className='text-2xl px-2 py-1 mt-1  hover:bg-green-600  rounded-sm bg-indigo-600 text-white'> <AiOutlineShoppingCart/></button>
                                     </div>
                                    </div>
@@ -52,7 +53,7 @@ const FeatureTemplates = () => {
                 </div>
             </Bounce>
             </div>
-        </div>
+     
     );
 };
 
