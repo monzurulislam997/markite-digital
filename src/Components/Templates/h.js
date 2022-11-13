@@ -69,6 +69,29 @@ const AllJob = () => {
   const lastPage = Math.ceil(eval(total / show));
 
 
+// {/* <div className='flex gap-9 justify-evenly mt-7'>
+// <div>
+//     <h1 className='text-3xl font-bold inline-block '>Welcome to Markite!  </h1> <br />
+
+//     <input type="radio" id="javascript" name="fav_language" value="JavaScript"/>
+//     <label for="javascript">JavaScript</label>
+//     {/* <button onClick={() => change()}>Customer Account</button>
+//     <button className='btn btn-primary'>Seller Account </button > */}
+// // </div>
+// {/* <div>
+// <h1   > Already Have An Account?<Link to="/login" className='text-xl font-bold rounded-md text-indigo-700 px-5 '>Please, Log In </Link> </h1> 
+// </div> */}
+
+// //  </div> */}
+
+
+
+
+
+
+
+
+
   return (
     <div className='flex flex-col h-auto bg-base-300'>
 
