@@ -1,4 +1,5 @@
 import React from 'react';
+import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/image/logo.png'
 const Navbar = () => {
@@ -17,7 +18,7 @@ const Navbar = () => {
             </ul>
         </li>
         <li><Link to="/support">Support</Link></li>
-        <li><Link to="/shop">HTML</Link></li>
+        <li><Link to="/buy">HTML</Link></li>
         <li><Link to="/contact">Contact</Link></li>
         
         <li tabIndex={0}>
@@ -57,11 +58,20 @@ const Navbar = () => {
                         {navbar}
 
                     </ul>
+                  
                 </div>
+
                 <div className="">
-                    <a className="btn">Get started</a>
+                               
+                   <Link  to='/login'  className="btn mr-4">Log In</Link>
+                    <Link to='/signup' className="btn mr-4">Sign Up</Link> 
+                    <span className='text-slate-300 mr-4 '>|</span>
+                < AiOutlineShoppingCart className='text-3xl inline-block '/>
+          <span className=' inline-block relative bg-indigo-500 text-white w-6 h-6 text-sm  text-center rounded-full  mr-4 bottom-3 -ml-2'>2 </span>
+                   </div>
+
                 </div>
-            </div>
+            
                    </nav>
     );
 };
