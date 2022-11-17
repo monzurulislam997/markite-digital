@@ -1,40 +1,61 @@
 import React from 'react';
-import { useState } from 'react';
+import axios from "axios";
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, navigate } from 'react-router-dom';
 import img from '../../assets/image/signup.gif'
-const Signup = () => {
-    const [isSeller, setIsSeller] = useState(false)
-    const { register, formState: { errors }, handleSubmit } = useForm();
-    const onSubmit = data => console.log(data);
+import auth from '../../firebase.init';
 
+import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
+import { toast } from 'react-toastify';
+import useToken from '../../hooks/useToken';
+export default function SignUpForSeller() {
+    const { register, formState: { errors }, handleSubmit } = useForm();
+    const [updateProfile, updating] = useUpdateProfile(auth);
+    const [
+        createUserWithEmailAndPassword,
+        user,
+        loading,
+        error,
+    ] = useCreateUserWithEmailAndPassword(auth);
+    const navigate = useNavigate()
+    const [token] = useToken(user)
+    const onSubmit = async data => {
+        const { displayName, email, select, password } = data;
+
+        await createUserWithEmailAndPassword(email, password)
+        await updateProfile({ displayName });
+
+        const sellerData = {
+            name: displayName,
+            role: "seller",
+            email,
+            category: select
+        }
+
+        //    fetch('http://localhost:5000/user/seller',{
+        //     method:"POST",
+        //     headers:{
+        //         'content-type':"application/json"
+        //     },
+        //     body:JSON.stringify(sellerData)
+        //    })
+
+
+        axios.put(`http://localhost:5000/user/${data.email}`, sellerData);
+
+        toast.success(`Welcome ${data.displayName}! You are now registered.`);
+
+
+    };
+
+    if (token) {
+        navigate('/')
+    }
 
     return (
-        <div>
-            <div className='flex gap-9 justify-evenly mt-7'>
-                <div>
-
-                    <h2 className='text-3xl font-bold inline-block '>Welcome to Markite!  </h2> <br />
-                    <button >Customer Account</button>
-                    <button className='btn btn-primary'>Seller Account </button >
-                </div>
-                <div>
-                    <h1  > Already Have An Account?<Link to="/login" className='text-xl font-bold rounded-md text-indigo-700 px-5 '>Please, Log In </Link> </h1>
-                </div>
-
-            </div>
+        <div className='py-20'>
 
 
-
-
-            {/* <div className=' w-2/3 mx-auto' >
-                <h1 className='text-3xl font-bold inline-block '>Welcome to Markite!  </h1> <br />
-
-                <input type="radio" id="customer" name="account" value="customer" />
-                <label for="customer">Customer</label> <br />
-                <input type="radio" id="seller" name="account" value="seller" />
-                <label for="seller">Seller</label>
-            </div> */}
 
             <div className="hero -mt-16  min-h-screen ">
 
@@ -46,13 +67,13 @@ const Signup = () => {
                         <img src={img} className="h-80 w-3/4" alt="" />
 
                     </div>
-                    <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                    <div className="card flex-shrink-0 w-full max-w-lg shadow-2xl bg-base-100">
 
                         <div>
 
                             <div className="card-body">
-                                <h1 className="text-3xl text-center font-bold">Register now!<span>{isSeller === true ? "seller" : "customer"}</span> </h1>
-                                <h1   > Already Have An Account?<Link to="/login" className='text-md font-bold rounded-md text-indigo-700  '>Please, Log In </Link> </h1>
+                                <h1 className="text-xl md:text-2xl text-center font-bold">Register now! Seller </h1>
+                                <h1 className='text-center'> Already Have An Account? <Link to="/login" className='text-md font-bold rounded-md text-indigo-700'>Log In </Link> </h1>
 
                                 <form onSubmit={handleSubmit(onSubmit)}>     {/* name input */}
                                     <div className="form-control">
@@ -99,24 +120,27 @@ const Signup = () => {
                                         {errors.email?.type === 'pattern' && <span className='text-red-500'>{errors.email.message}</span>}
                                     </div>
 
-                                    {
-                                        !isSeller && <div className="form-control">
-                                            <label className="label">
-                                                <span className="label-text">Catagory</span>
-                                            </label>
-                                            <select    {...register("select")}
+                                    <div className="form-control">
+                                        <label className="label">
+                                            <span className="label-text">Catagory</span>
+                                        </label>
+                                        <select  {...register("select", {
+                                            required: {
+                                                value: true,
+                                                message: "Minimum one option is required"
+                                            }
+                                        })}
 
-                                                className="select select-bordered text-slate-600 font-thin w-full max-w-xs">
+                                            className="select select-bordered text-slate-600 font-thin w-full max-w-lg">
+                                            <option defaultValue disabled>Choose one</option>
+                                            <option>HTML+ CSS</option>
+                                            <option>HTML, CSS, JavaScript</option>
+                                            <option>React, JavaScript</option>
+                                            <option>Laravel, PHP</option>
+                                        </select>
+                                        {errors.select?.type === 'required' && <span className='text-red-500'>{errors.email.message}</span>}
+                                    </div>
 
-                                                <option>HTML+ CSS</option>
-                                                <option>HTML, CSS, JavaScript</option>
-                                                <option>React, JavaScript</option>
-                                                <option>Laravel, PHP</option>
-                                            </select>
-
-
-                                        </div>
-                                    }
                                     <div className="form-control">
                                         <label className="label">
                                             <span className="label-text">Password</span>
@@ -136,7 +160,7 @@ const Signup = () => {
                                         />
 
                                         <label className="label">
-                                           <p className="text-red-500 text-sm">{errors.password?.message}</p> </label>
+                                            <p className="text-red-500 text-sm">{errors.password?.message}</p> </label>
                                     </div>
                                     <label className="label">
                                         <a href="https://google.com" className="label-text-alt link text-sm link-hover">Forgot password?</a>
@@ -154,13 +178,5 @@ const Signup = () => {
                 </div>
             </div>
         </div >
-
-
     );
 };
-
-export default Signup;
-
-
-
-

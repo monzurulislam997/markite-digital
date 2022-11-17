@@ -2,8 +2,20 @@ import React from 'react';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/image/logo.png'
+import { MdOutlineKeyboardArrowRight } from "react-icons/md";
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
+import { signOut } from "firebase/auth";
+import Dashbord from './../dashboard/Dashbord';
+import { useLocation } from 'react-router-dom';
+import Loadder from '../Lodder/Loadder';
 const Navbar = () => {
+    const [user, loading] = useAuthState(auth)
 
+
+    if (loading) {
+        return <Loadder></Loadder>
+    }
     const navbar = <>
         <li><Link to="/home">Home</Link></li>
         <li><Link to="/price">Pricing</Link></li>
@@ -20,7 +32,8 @@ const Navbar = () => {
         <li><Link to="/support">Support</Link></li>
         <li><Link to="/buy">HTML</Link></li>
         <li><Link to="/contact">Contact</Link></li>
-        
+        <li><Link to="/dashboard">Dashbord</Link></li>
+
         <li tabIndex={0}>
             <Link to="/shop">
                 Pages
@@ -32,47 +45,110 @@ const Navbar = () => {
 
             </ul>
         </li> </>
+
+
     return (
-        <nav>
-        <div className="flex justify-around bg-base-100 py-4">
-                  <div className='flex '>
-                  <div className="dropdown ">
+        <nav className='sticky top-0 z-50'>
+            <div className="flex justify-around bg-base-100 py-4">
+                <div className='flex '>
+                    <div className="dropdown ">
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </label>
                         <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                             {navbar}
                         </ul>
-                        
+
                     </div>
                     <Link to='/home' className=" lg:ml-20">
-                        <img className=' w-32 lg:mt-0 mt-2 lg:w-40' src={logo} alt="" />
+                        <img className=' w-32 lg:mt-0 mt-2 hidden lg:block lg:w-40' src={logo} alt="" />
                     </Link>
-                
-                  </div>
-                        
+
+                </div>
+
                 <div className="navbar-center hidden lg:flex">
-                
-                
+
+
                     <ul className="menu menu-horizontal mr-12    ">
                         {navbar}
 
                     </ul>
-                  
+
                 </div>
 
-                <div className="">
+                {
+                    user ? <>
+                        {/* <div className="avatar   online">
+                            <div className="w-12 ring ring-primary rounded-full">
+                                <img src="https://placeimg.com/192/192/people" alt='' />
                                
-                   <Link  to='/login'  className="btn mr-4">Log In</Link>
-                    <Link to='/signup' className="btn mr-4">Sign Up</Link> 
-                    <span className='text-slate-300 mr-4 '>|</span>
-                < AiOutlineShoppingCart className='text-3xl inline-block '/>
-          <span className=' inline-block relative bg-indigo-500 text-white w-6 h-6 text-sm  text-center rounded-full  mr-4 bottom-3 -ml-2'>2 </span>
-                   </div>
+                            </div>
+                        </div> */}
 
-                </div>
-            
-                   </nav>
+                        <div className="dropdown dropdown-end">
+                            <label tabIndex={0} className="cursor-pointer" ><div className="avatar   online">
+                                <div className="w-12 ring ring-primary rounded-full">
+                                    <img src=" https://placeimg.com/192/192/people" alt='' />
+
+
+                                </div>
+                            </div> </label>
+                            <ul tabIndex={0} className="dropdown-content menu p-2 shadow-xl bg-base-100 rounded-box w-52">
+                                <li><Link to='/'>Profile</Link></li>
+                                <li> <button onClick={() => {
+                                    signOut(auth)
+                                    localStorage.removeItem('accessToken')
+                                }}>Sign Out</button></li>
+                            </ul>
+                        </div>
+
+
+                    </> : <>
+                        <div className="">
+
+                            <Link to='/login' className=" font-semibold hover:bg-sky-700 hover:text-white hover:font-thin px-3 mr-2  text-xl py-1 rounded-md ">Log In</Link>
+
+                            <div className="dropdown dropdown-end">
+                                <label tabIndex="0" className=" btn btn-primary text-white">
+                                    Get Started{" "}
+                                    <MdOutlineKeyboardArrowRight className="text-2xl" />
+                                </label>
+                                <ul
+                                    tabIndex="0"
+                                    className="dropdown-content menu p-2 shadow-xl bg-base-100 rounded-box w-52"
+                                >
+                                    <li className="py-2">
+                                        <Link
+                                            to="signUp/customer"
+                                            className="font-semibold hover:text-primary hover:font-bold hover:ease-in-out duration-300"
+                                        >
+                                            As a Customer
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link
+                                            to="signUp/seller"
+                                            className="font-semibold hover:text-primary hover:font-bold hover:ease-in-out duration-300"
+                                        >
+                                            As a seller
+                                        </Link>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            {/* <Link to='/signup' className="font-semibold hover:bg-sky-700 hover:text-white hover:font-thin   py-1  mr-4">Sign Up</Link>  */}
+
+                            <span className='text-slate-300 mr-4 '>|</span>
+                            < AiOutlineShoppingCart className='text-3xl inline-block ' />
+                            <span className=' inline-block relative bg-indigo-500 text-white w-6 h-6 text-sm  text-center rounded-full  mr-4 bottom-3 -ml-2'>2 </span>
+                        </div></>
+                }
+
+
+
+            </div>
+
+        </nav>
     );
 };
 

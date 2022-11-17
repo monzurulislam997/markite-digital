@@ -2,23 +2,28 @@ import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import Home from './Components/Home/Home';
 import Navbar from './Components/Shared/Navbar';
-import Footer from './Components/Footer/Footer';
+
 import TemplatesDashboard from './Components/Templates/TemplatesDashboard';
 import Support from './Components/Support/Support';
 import Contact from './Components/Contact/Contact';
 import Login from './Components/Login/Login';
-import Signup from './Components/Signup/Signup';
+
 import SingleProductShow from './Components/Templates/SingleProductShow';
 import { ScrollToTop } from 'react-simple-scroll-up'
 import CheackOut from './Components/cheakOut/CheackOut';
 import Cart from './Components/Cart/Cart';
+import SignUpForSeller from './Components/SignUpForSeller/SignUpForSeller';
+import SignupCustomer from './Components/SignupCustomer/SignupCustomer';
+import { ToastContainer } from 'react-toastify';
+import Dashbord from './Components/dashboard/Dashbord';
+import RequireAuth from './Components/requireAuth/RequireAuth';
 
 function App() {
   return (
     <div >
       <div className='App'>
-      <ScrollToTop bgColor='white' symbolColor='#16a34a' symbolSize='40px' strokeFillColor='#10b981' />
-    </div>
+        <ScrollToTop bgColor='white' symbolColor='#16a34a' symbolSize='40px' strokeFillColor='#10b981' />
+      </div>
       <Navbar></Navbar>
       <Routes>
         <Route path='/' element={<Home></Home>}></Route>
@@ -30,10 +35,14 @@ function App() {
         <Route path='/singleproduct/:id' element={<SingleProductShow></SingleProductShow>}></Route>
         <Route path='/contact' element={<Contact></Contact>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
-        <Route path='/signup' element={<Signup></Signup>}></Route>
+        <Route path='/signup/customer' element={<SignupCustomer></SignupCustomer>}></Route>
+        <Route path='/signup/seller' element={<SignUpForSeller />}></Route>
+        <Route path='/dashboard' element={<RequireAuth><Dashbord /></RequireAuth>}></Route>
         
+
       </Routes>
-      <Footer></Footer>
+      <ToastContainer />
+
     </div>
   );
 }
