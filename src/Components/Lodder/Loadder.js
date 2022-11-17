@@ -1,18 +1,29 @@
 import React from 'react';
 // import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-import { Dna } from 'react-loader-spinner'
+import { BallTriangle, Dna, Watch } from 'react-loader-spinner'
 
 const Loadder = () => {
     return (
-        <div>
-            <Dna
+        <div className='h-screen w-full flex justify-center items-center'>
+
+            <BallTriangle
+                height={100}
+                width={100}
+                radius={5}
+                color="#4338ca"
+                ariaLabel="ball-triangle-loading"
+                wrapperClass={{}}
+                wrapperStyle=""
                 visible={true}
-                height="80"
-                width="80"
+            />
+            {/* <Dna
+                visible={true}
+                height="90"
+                width="90"
                 ariaLabel="dna-loading"
                 wrapperStyle={{}}
                 wrapperClass="dna-wrapper"
-            />
+            /> */}
         </div>
     );
 };

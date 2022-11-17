@@ -5,8 +5,12 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from './../../firebase.init';
+import Loadder from '../Lodder/Loadder';
 
 const TemplatesDashboard = () => {
+    const [user, loading] = useAuthState(auth)
     const [allTemplates, setAllTemplates] = useState([])
     useEffect(() => {
         fetch('http://localhost:5000/alltemplates')
@@ -14,6 +18,10 @@ const TemplatesDashboard = () => {
             .then(data => setAllTemplates(data))
     }, [])
 
+
+    if (loading) {
+        return <Loadder></Loadder>
+    }
 
     return (
         <div style={{ backgroundImage: `url(${bg}`, backgroundSize: "cover" }} className='py-6 ' >

@@ -17,13 +17,28 @@ import SignupCustomer from './Components/SignupCustomer/SignupCustomer';
 import { ToastContainer } from 'react-toastify';
 import Dashbord from './Components/dashboard/Dashbord';
 import RequireAuth from './Components/requireAuth/RequireAuth';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import Loadder from './Components/Lodder/Loadder';
 
 function App() {
+  const [isLoading, setLoading] = useState(true)
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false)
+    }, 500);
+  })
+  if (isLoading) {
+    return <Loadder></Loadder>
+  }
+
   return (
     <div >
-      <div className='App'>
+      <div >
         <ScrollToTop bgColor='white' symbolColor='#16a34a' symbolSize='40px' strokeFillColor='#10b981' />
       </div>
+
+
       <Navbar></Navbar>
       <Routes>
         <Route path='/' element={<Home></Home>}></Route>
@@ -38,7 +53,7 @@ function App() {
         <Route path='/signup/customer' element={<SignupCustomer></SignupCustomer>}></Route>
         <Route path='/signup/seller' element={<SignUpForSeller />}></Route>
         <Route path='/dashboard' element={<RequireAuth><Dashbord /></RequireAuth>}></Route>
-        
+
 
       </Routes>
       <ToastContainer />

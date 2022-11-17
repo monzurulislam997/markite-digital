@@ -9,13 +9,13 @@ import { signOut } from "firebase/auth";
 import Dashbord from './../dashboard/Dashbord';
 import { useLocation } from 'react-router-dom';
 import Loadder from '../Lodder/Loadder';
+
 const Navbar = () => {
     const [user, loading] = useAuthState(auth)
-
-
     if (loading) {
         return <Loadder></Loadder>
     }
+
     const navbar = <>
         <li><Link to="/home">Home</Link></li>
         <li><Link to="/price">Pricing</Link></li>

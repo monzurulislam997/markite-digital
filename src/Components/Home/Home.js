@@ -5,9 +5,14 @@ import Footer from '../Footer/Footer';
 import Hm from '../Login/hm';
 import Pricing from '../Pricing/Pricing';
 import Banner from './Banner';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from './../../firebase.init';
+
 
 
 const Home = () => {
+
+
     return (
         <div >
             <Banner></Banner>
