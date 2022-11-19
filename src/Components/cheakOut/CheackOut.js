@@ -5,13 +5,14 @@ const onSubmit = data => console.log(data);
 const CheackOut = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
 
-    const [cartProduct, setCartProduct]=useState([])
-    
+    const [cartProduct, setCartProduct] = useState([])
+
+    const [payAmout, setPayAmount] = useState(JSON.parse(localStorage.getItem("amount")))
 
     return (
 
         <div className=' w-full flex ' >
-            
+
 
             <div className=" w-1/2 border px-10 py-5 m-5 ">
                 <h2 className='text-2xl font-black'>Billing Details</h2>
@@ -117,6 +118,8 @@ const CheackOut = () => {
 
             <div className='w-1/2'>
                 <h2>Order Summary</h2>
+                <h1>Total Payble: {payAmout}</h1>
+
             </div>
         </div>
 

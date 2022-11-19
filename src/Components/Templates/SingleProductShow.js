@@ -2,18 +2,42 @@
 import { Link, useParams } from 'react-router-dom';
 import useSignlnProduct from '../../hooks/useSingleProduct';
 import done from '../../assets/image/done.png'
+import { useState } from 'react';
 const SingleProductShow = () => {
     const { id } = useParams();
+    const [cart, setCart] = useState([])
     const { productDetails } = useSignlnProduct(id)
     const { price, name, img, author } = productDetails
+    const [isAdded, setIsAdded] = useState(false)
+    const handleCart = () => {
 
- const handleCart =()=>{
+        const cart = []
 
-     const cartItems= [price,name, img,author]
-    localStorage.setItem("productDetails",JSON.stringify(cartItems))
- }
+        const storedCart = localStorage.getItem('product')
+        if (storedCart) {
+            const productCart = JSON.parse(storedCart);
+            if (id) {
+                for (const product of productCart) {
+                    if (product._id === id) {
+                        return setIsAdded(true)
+                        // return alert("All ready added")
+                    }
+                }
+            }
 
- 
+            cart.push(...productCart, productDetails)
+
+            localStorage.setItem('product', JSON.stringify(cart))
+        }
+        else {
+            cart.push(productDetails)
+
+            localStorage.setItem("product", JSON.stringify(cart))
+
+        }
+    }
+
+
 
     return (
         <div className='bg-gradient-to-r from-cyan-50 to-pink-50 py-20  px-16'>
@@ -63,9 +87,11 @@ const SingleProductShow = () => {
                             <div className="modal opacity-100 modal-bottom sm:modal-middle mx-auto">
                                 <div className="modal-box  ">
 
-                                    <div className='text-center py-4'>
+                                    <div className='text-center py-8'>
                                         <img className='w-16 mx-auto  text-center' src={done} alt="" />
-                                        <h3 className="font-black text-2xl ">Item added to your cart</h3>
+                                        {!isAdded ? <h3 className="font-black text-2xl ">Item added to your cart</h3> :
+                                            <h3 className="font-black text-2xl ">Already Added</h3>
+                                        }
                                     </div>
 
 
@@ -89,7 +115,7 @@ const SingleProductShow = () => {
 
                                     <div className="modal-action flex justify-between">
                                         <label htmlFor="addCartModal" className="btn btn-outline btn-info text-indigo-800 hover:bg-slate-400">Keep Browsing</label>
-                                        <Link className='btn  bg-primary hover:bg-emerald-600"' to="/cart">Go to Cheack Out</Link>
+                                        <Link className='btn  bg-primary hover:bg-emerald-600' product={productDetails} to="/cart">Go to Cheack Out</Link>
                                     </div>
                                 </div>
                             </div>

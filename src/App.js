@@ -53,6 +53,7 @@ function App() {
         <Route path='/signup/customer' element={<SignupCustomer></SignupCustomer>}></Route>
         <Route path='/signup/seller' element={<SignUpForSeller />}></Route>
         <Route path='/dashboard' element={<RequireAuth><Dashbord /></RequireAuth>}></Route>
+        <Route path='/checkout' element={<CheackOut></CheackOut>}></Route>
 
 
       </Routes>

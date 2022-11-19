@@ -9,9 +9,12 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from './../../firebase.init';
 import Loadder from '../Lodder/Loadder';
 
+
 const TemplatesDashboard = () => {
     const [user, loading] = useAuthState(auth)
     const [allTemplates, setAllTemplates] = useState([])
+    // ---------------------------------------------------------------------
+
     useEffect(() => {
         fetch('http://localhost:5000/alltemplates')
             .then(res => res.json())

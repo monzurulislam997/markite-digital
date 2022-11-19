@@ -138,12 +138,12 @@ const Navbar = () => {
 
                             {/* <Link to='/signup' className="font-semibold hover:bg-sky-700 hover:text-white hover:font-thin   py-1  mr-4">Sign Up</Link>  */}
 
-                            <span className='text-slate-300 mr-4 '>|</span>
-                            < AiOutlineShoppingCart className='text-3xl inline-block ' />
-                            <span className=' inline-block relative bg-indigo-500 text-white w-6 h-6 text-sm  text-center rounded-full  mr-4 bottom-3 -ml-2'>2 </span>
+
+
                         </div></>
                 }
-
+                < AiOutlineShoppingCart className='text-3xl inline-block ' />
+                <span className=' inline-block relative bg-indigo-500 text-white w-6 h-6 text-sm  text-center rounded-full  mr-3 bottom-2 -ml-12'>0 </span>
 
 
             </div>
