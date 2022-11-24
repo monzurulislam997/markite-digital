@@ -20,6 +20,8 @@ import RequireAuth from './Components/requireAuth/RequireAuth';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import Loadder from './Components/Lodder/Loadder';
+import MyOrder from './Components/dashboard/myOrder/MyOrder';
+import Statictics from './Components/dashboard/Statictics';
 
 function App() {
   const [isLoading, setLoading] = useState(true)
@@ -52,8 +54,14 @@ function App() {
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/signup/customer' element={<SignupCustomer></SignupCustomer>}></Route>
         <Route path='/signup/seller' element={<SignUpForSeller />}></Route>
-        <Route path='/dashboard' element={<RequireAuth><Dashbord /></RequireAuth>}></Route>
+        <Route path='/dashboard' element={<RequireAuth><Dashbord /></RequireAuth>}>
+
+          <Route path='myorder' element={<MyOrder></MyOrder>}></Route>
+          <Route index element={<Statictics></Statictics>}></Route>
+
+        </Route>
         <Route path='/checkout' element={<CheackOut></CheackOut>}></Route>
+
 
 
       </Routes>

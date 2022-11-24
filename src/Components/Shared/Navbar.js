@@ -47,6 +47,13 @@ const Navbar = () => {
         </li> </>
 
 
+    const addToCart = () => {
+        const product = JSON.parse(localStorage.getItem('product'))
+        console.log(product)
+    }
+
+
+
     return (
         <nav className='sticky top-0 z-50'>
             <div className="flex justify-around bg-base-100 py-4">
@@ -142,8 +149,10 @@ const Navbar = () => {
 
                         </div></>
                 }
-                < AiOutlineShoppingCart className='text-3xl inline-block ' />
-                <span className=' inline-block relative bg-indigo-500 text-white w-6 h-6 text-sm  text-center rounded-full  mr-3 bottom-2 -ml-12'>0 </span>
+                <div onClick={addToCart}>
+                    < AiOutlineShoppingCart className='text-3xl inline-block ' />
+                    <span className=' inline-block relative bg-indigo-500 text-white w-6 h-6 text-sm  text-center rounded-full  bottom-5 -ml-3 '>0</span>
+                </div>
 
 
             </div>

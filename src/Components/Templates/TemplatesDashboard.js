@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from './../../firebase.init';
 import Loadder from '../Lodder/Loadder';
+import useSignlnProduct from './../../hooks/useSingleProduct';
 
 
 const TemplatesDashboard = () => {
@@ -25,6 +26,7 @@ const TemplatesDashboard = () => {
     if (loading) {
         return <Loadder></Loadder>
     }
+
 
     return (
         <div style={{ backgroundImage: `url(${bg}`, backgroundSize: "cover" }} className='py-6 ' >
