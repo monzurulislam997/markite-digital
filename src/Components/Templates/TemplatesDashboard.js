@@ -9,7 +9,8 @@ import auth from './../../firebase.init';
 import Loadder from '../Lodder/Loadder';
 import useSignlnProduct from './../../hooks/useSingleProduct';
 import useCartNumber from './../../hooks/useCartNumber';
-
+import Swal from 'sweetalert2';
+import 'animate.css';
 const TemplatesDashboard = () => {
     const [user, loading] = useAuthState(auth)
     const [allTemplates, setAllTemplates] = useState([])
@@ -88,15 +89,30 @@ const TemplatesDashboard = () => {
                                         for (const product of productCart) {
                                             if (product._id === _id) {
                                                 // return setIsAdded(true)
-                                                return alert("All ready added")
+                                                return Swal.fire({
+                                                    title: 'Already Added',
+                                                    showClass: {
+                                                        popup: 'animate__animated animate__fadeInDown'
+                                                    },
+                                                    hideClass: {
+                                                        popup: 'animate__animated animate__fadeOutUp'
+                                                    }
+                                                })
                                             }
                                         }
                                     }
 
                                     cart.push(...productCart, allTemplate)
 
-                                    const newCartItems = localStorage.setItem('product', JSON.stringify(cart))
+                                    localStorage.setItem('product', JSON.stringify(cart))
+                                    return Swal.fire({
+                                        title: 'Added To Your Cart',
+                                        imageUrl: img,
+                                        imageWidth: 200,
+                                        imageHeight: 150,
+                                        imageAlt: 'image',
 
+                                    })
                                     // setCartProductNumber(newCartItems)
                                 }
                                 else {
