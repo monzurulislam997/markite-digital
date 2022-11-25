@@ -9,9 +9,18 @@ import { signOut } from "firebase/auth";
 import Dashbord from './../dashboard/Dashbord';
 import { useLocation } from 'react-router-dom';
 import Loadder from '../Lodder/Loadder';
+import { useState, useEffect, useContext } from 'react';
+import useCartNumber from './../../hooks/useCartNumber';
+import { ProductsNumberContext } from './../../App';
 
 const Navbar = () => {
     const [user, loading] = useAuthState(auth)
+
+    const [cartProductNumber] = useCartNumber()
+
+
+
+
     if (loading) {
         return <Loadder></Loadder>
     }
@@ -47,10 +56,6 @@ const Navbar = () => {
         </li> </>
 
 
-    const addToCart = () => {
-        const product = JSON.parse(localStorage.getItem('product'))
-        console.log(product)
-    }
 
 
 
@@ -149,9 +154,10 @@ const Navbar = () => {
 
                         </div></>
                 }
-                <div onClick={addToCart}>
+                <div className='cursor-pointer'>
                     < AiOutlineShoppingCart className='text-3xl inline-block ' />
-                    <span className=' inline-block relative bg-indigo-500 text-white w-6 h-6 text-sm  text-center rounded-full  bottom-5 -ml-3 '>0</span>
+                    {/* <span className=' inline-block relative bg-indigo-500 text-white w-6 h-6 text-sm  text-center rounded-full   bottom-5 -ml-3 '>0 </span> */}
+                    <span className=' inline-block relative bg-indigo-500 text-white w-6 h-6 text-sm  text-center rounded-full   bottom-5 -ml-3 '>{cartProductNumber ? cartProductNumber.length : 0} </span>
                 </div>
 
 

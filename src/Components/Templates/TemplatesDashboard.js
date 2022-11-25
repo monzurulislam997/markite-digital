@@ -1,19 +1,22 @@
 import React from 'react';
 import { templateTypeList } from '../../data';
 import bg from "../../assets/image/shape-1.png"
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from './../../firebase.init';
 import Loadder from '../Lodder/Loadder';
 import useSignlnProduct from './../../hooks/useSingleProduct';
-
+import useCartNumber from './../../hooks/useCartNumber';
 
 const TemplatesDashboard = () => {
     const [user, loading] = useAuthState(auth)
     const [allTemplates, setAllTemplates] = useState([])
+    const [isAdded, setIsAdded] = useState(false)
+    const [setCartProductNumber] = useCartNumber()
+    // const [template, setTemplate] = useState({})
+    // console.log(template);
     // ---------------------------------------------------------------------
 
     useEffect(() => {
@@ -22,10 +25,17 @@ const TemplatesDashboard = () => {
             .then(data => setAllTemplates(data))
     }, [])
 
+    // const { productDetails } = useSignlnProduct(template._id)
 
     if (loading) {
         return <Loadder></Loadder>
     }
+
+    //----add to cart
+
+
+
+
 
 
     return (
@@ -63,7 +73,45 @@ const TemplatesDashboard = () => {
                     {
 
                         allTemplates.map(allTemplate => {
+                            // setTemplate(allTemplate)
                             const { _id, img, name, price, sale } = allTemplate
+
+
+                            //add to cart
+                            const handleCart = (id) => {
+                                const cart = []
+                                const storedCart = localStorage.getItem('product')
+                                if (storedCart) {
+                                    const productCart = JSON.parse(storedCart);
+                                    console.log(productCart, typeof productCart);
+                                    if (_id) {
+                                        for (const product of productCart) {
+                                            if (product._id === _id) {
+                                                // return setIsAdded(true)
+                                                return alert("All ready added")
+                                            }
+                                        }
+                                    }
+
+                                    cart.push(...productCart, allTemplate)
+
+                                    const newCartItems = localStorage.setItem('product', JSON.stringify(cart))
+
+                                    // setCartProductNumber(newCartItems)
+                                }
+                                else {
+                                    cart.push(allTemplate)
+
+                                    localStorage.setItem("product", JSON.stringify(cart))
+
+                                }
+                            }
+
+
+
+
+
+
                             return <div className=''>
                                 <div className="card w-5/6 bg-base-100 mb-4 mx-3 drop-shadow-2xl">
                                     <figure className=''>
@@ -81,7 +129,9 @@ const TemplatesDashboard = () => {
                                             </div>
                                             <div className="card-actions justify-end">
                                                 <Link to={`/singleproduct/${_id}`} className='bg-indigo-800 px-5 mt-1 py-1 rounded-md  hover:bg-cyan-600  text-white'>Preview </Link>
-                                                <button className='text-2xl px-2 py-1 mt-1  hover:bg-green-600  rounded-sm bg-indigo-600 text-white'> <AiOutlineShoppingCart /></button>
+                                                {/* <button className='text-2xl px-2 py-1 mt-1  hover:bg-green-600  rounded-sm bg-indigo-600 text-white'> <AiOutlineShoppingCart /></button> */}
+                                                <button className='text-2xl px-2 py-1 mt-1  hover:bg-green-600  rounded-sm bg-indigo-600 text-white'> <AiOutlineShoppingCart onClick={() => handleCart(_id)} /></button>
+
                                             </div>
                                         </div>
                                     </div>

@@ -22,9 +22,15 @@ import { useState } from 'react';
 import Loadder from './Components/Lodder/Loadder';
 import MyOrder from './Components/dashboard/myOrder/MyOrder';
 import Statictics from './Components/dashboard/Statictics';
+import { createContext } from 'react';
+export const ProductsNumberContext = createContext('productNumber')
 
 function App() {
+
   const [isLoading, setLoading] = useState(true)
+
+
+
   useEffect(() => {
     setTimeout(() => {
       setLoading(false)
@@ -34,7 +40,14 @@ function App() {
     return <Loadder></Loadder>
   }
 
+
+
+
+
+
   return (
+
+
     <div >
       <div >
         <ScrollToTop bgColor='white' symbolColor='#16a34a' symbolSize='40px' strokeFillColor='#10b981' />
@@ -68,6 +81,7 @@ function App() {
       <ToastContainer />
 
     </div>
+
   );
 }
 
