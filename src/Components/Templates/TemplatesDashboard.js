@@ -1,7 +1,7 @@
 import React from 'react';
 import { templateTypeList } from '../../data';
 import bg from "../../assets/image/shape-1.png"
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -11,11 +11,13 @@ import useSignlnProduct from './../../hooks/useSingleProduct';
 import useCartNumber from './../../hooks/useCartNumber';
 import Swal from 'sweetalert2';
 import 'animate.css';
+import { ThemContext } from '../../App';
 const TemplatesDashboard = () => {
     const [user, loading] = useAuthState(auth)
     const [allTemplates, setAllTemplates] = useState([])
     const [isAdded, setIsAdded] = useState(false)
     const [setCartProductNumber] = useCartNumber()
+    const { theme } = useContext(ThemContext)
     // const [template, setTemplate] = useState({})
     // console.log(template);
     // ---------------------------------------------------------------------
@@ -52,13 +54,14 @@ const TemplatesDashboard = () => {
                 </div>
             </div>
             <div className='grid lg:py-10 py-5  grid-cols-4 '>
-                <div className=' bg-white drop-shadow-2xl lg:block hidden h-96 ml-0 lg:ml-10 py-7 rounded-md px-5'>
+                <div className={theme === "night" ? ' bg-sky-900 drop-shadow-2xl lg:block hidden h-96 ml-0 lg:ml-10 py-7 rounded-md px-5' : ' bg-white drop-shadow-2xl lg:block hidden h-96 ml-0 lg:ml-10 py-7 rounded-md px-5'}>
                     <h4 className='text-md text-xl  font-semibold  pb-2 text-black'>Catagory </h4>
                     <hr className='mb-3 ' />
 
+
                     {
                         templateTypeList?.map(templateType => {
-                            return <div>
+                            return <div >
 
                                 <label  > <input type="checkbox" className='mr-1 mt-2 text-3xl ' value={templateType.label} /> {templateType?.label}</label>
                                 {/* <label className=' cursor-pointer ' htmlFor={templateType.id}> <input type="checkbox" className='mr-1 mt-2 text-3xl  ' value={templateType.label} /> {templateType?.label}</label> */}

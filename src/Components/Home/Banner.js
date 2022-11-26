@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './Banner.css'
 import hero from '../../assets/image/hero-triangle.png'
 import circle from '../../assets/image/hero-circle.png'
@@ -9,10 +9,14 @@ import hero3 from '../../assets/image/hero-3.jpg'
 import heroCircle from '../../assets/image/hero-circle-2.png'
 import { BiSearchAlt2 } from "react-icons/bi";
 import Bounce from 'react-reveal/Bounce';
+import { ThemContext } from '../../App';
 const Banner = () => {
+
+    const { theme } = useContext(ThemContext)
+    console.log(theme)
     return (
 
-        <div style={{ backgroundColor: '#eeedf2' }} className=' py-10 flex flex-col lg:flex-row '>
+        <div style={theme === 'night' ? { backgroundColor: '#0f0826' } : { backgroundColor: '#eeedf2' }} className={theme === 'night' ? ' py-10 flex flex-col text-white  lg:flex-row ' : ' py-10 flex flex-col lg:flex-row '}>
             <Bounce >
                 <div className='lg:w-1/2 w-full ml-3 lg:order-1 p-8   lg:p-20 order-1'>
 
@@ -28,8 +32,9 @@ const Banner = () => {
 
                     <div className=' flex w-full mt-8    '>
 
-                        <div className='flex justify-center  input-bordered rounded-md  bg-white w-5/6 mr-3  items-center' >
-                            <span className='text-slate-500 text-xl'>< BiSearchAlt2 /> </span>  <input type="search" placeholder="Search for templates" className=" py-7  input focus:outline-0 w-full max-w-xs" />
+                        <div className={theme === 'night' ? 'flex justify-center  input-bordered rounded-md  bg-slate-500 w-5/6 mr-3  items-center' : 'flex justify-center  bg-slate-500 input-bordered rounded-md  w-5/6 mr-3  items-center'} >
+                            <span className={theme === "night" ? 'text-white text-xl' : 'text-slate-500 text-xl'}>< BiSearchAlt2 /> </span>
+                            <input type="search" placeholder="Search for templates" className={theme === "night" ? " py-7  input focus:outline-0 w-full bg-slate-500 max-w-xs" : " py-7  input focus:outline-0 w-full  max-w-xs"} />
                         </div>
 
                         <button className=" border-none hover:bg-violet-800 text-white rounded-lg lg:px-8  px-3 bg-indigo-700">Search</button>

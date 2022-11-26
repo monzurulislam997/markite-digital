@@ -26,24 +26,18 @@ import { createContext } from 'react';
 export const ProductsNumberContext = createContext('productNumber')
 export const ThemContext = createContext(null)
 
+
+
 function App() {
 
   const [isLoading, setLoading] = useState(true)
   const [theme, setTheme] = useState('light')
 
-  const toggleTheme = () => {
-    setTheme((curr) => (curr === 'light' ? "dark" : "light"))
-
-  }
-
-  const currTheme = localStorage.getItem('theme');
 
   useEffect(() => {
+    setTheme(window.localStorage.getItem("theme"));
+  }, []);
 
-    // setTheme(localStorage.getItem('theme'))
-    setTheme(currTheme)
-
-  }, [currTheme, localStorage.getItem('theme')])
 
 
   useEffect(() => {
@@ -57,39 +51,40 @@ function App() {
 
   return (
 
-    <div className={theme === 'dark' ? "bg-black" : "bg-white"} >
-      <div >
-        <ScrollToTop bgColor='white' symbolColor='#16a34a' symbolSize='40px' strokeFillColor='#10b981' />
+    <ThemContext.Provider value={{ theme, setTheme }} >
+
+      <div data-theme={theme ? theme : "light"}>
+        <div >
+          <ScrollToTop bgColor='white' symbolColor='#16a34a' symbolSize='40px' strokeFillColor='#10b981' />
+        </div>
+
+        <Navbar></Navbar>
+        <Routes>
+          <Route path='/' element={<Home></Home>}></Route>
+          <Route path='/home' element={<Home></Home>}></Route>
+          <Route path='/templates' element={<TemplatesDashboard></TemplatesDashboard>}></Route>
+          <Route path='/checkout' element={<CheackOut></CheackOut>}></Route>
+          <Route path='/cart' element={<Cart></Cart>}></Route>
+          <Route path='/support' element={<Support></Support>}></Route>
+          <Route path='/singleproduct/:id' element={<SingleProductShow></SingleProductShow>}></Route>
+          <Route path='/contact' element={<Contact></Contact>}></Route>
+          <Route path='/login' element={<Login></Login>}></Route>
+          <Route path='/signup/customer' element={<SignupCustomer></SignupCustomer>}></Route>
+          <Route path='/signup/seller' element={<SignUpForSeller />}></Route>
+          <Route path='/dashboard' element={<RequireAuth><Dashbord /></RequireAuth>}>
+
+            <Route path='myorder' element={<MyOrder></MyOrder>}></Route>
+            <Route index element={<Statictics></Statictics>}></Route>
+
+          </Route>
+          <Route path='/checkout' element={<CheackOut></CheackOut>}></Route>
+
+        </Routes>
+        <ToastContainer />
+
+
       </div>
-
-      <Navbar></Navbar>
-      <Routes>
-        <Route path='/' element={<Home></Home>}></Route>
-        <Route path='/home' element={<Home></Home>}></Route>
-        <Route path='/templates' element={<TemplatesDashboard></TemplatesDashboard>}></Route>
-        <Route path='/checkout' element={<CheackOut></CheackOut>}></Route>
-        <Route path='/cart' element={<Cart></Cart>}></Route>
-        <Route path='/support' element={<Support></Support>}></Route>
-        <Route path='/singleproduct/:id' element={<SingleProductShow></SingleProductShow>}></Route>
-        <Route path='/contact' element={<Contact></Contact>}></Route>
-        <Route path='/login' element={<Login></Login>}></Route>
-        <Route path='/signup/customer' element={<SignupCustomer></SignupCustomer>}></Route>
-        <Route path='/signup/seller' element={<SignUpForSeller />}></Route>
-        <Route path='/dashboard' element={<RequireAuth><Dashbord /></RequireAuth>}>
-
-          <Route path='myorder' element={<MyOrder></MyOrder>}></Route>
-          <Route index element={<Statictics></Statictics>}></Route>
-
-        </Route>
-        <Route path='/checkout' element={<CheackOut></CheackOut>}></Route>
-
-
-
-      </Routes>
-      <ToastContainer />
-
-
-    </div>
+    </ThemContext.Provider>
 
 
   );

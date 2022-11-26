@@ -11,14 +11,16 @@ import { useLocation } from 'react-router-dom';
 import Loadder from '../Lodder/Loadder';
 import { useState, useEffect, useContext } from 'react';
 import useCartNumber from './../../hooks/useCartNumber';
-import { ProductsNumberContext } from './../../App';
-
+import { ThemContext } from './../../App';
+import { BsFillMoonFill } from "react-icons/bs";
+import { BsFillSunFill } from "react-icons/bs";
 const Navbar = () => {
     const [user, loading] = useAuthState(auth)
     const [isDark, setIsDark] = useState(true)
+
     const [cartProductNumber] = useCartNumber()
-
-
+    const [cartProducts, setCartProducts] = useState(JSON.parse(localStorage.getItem('product')))
+    const { theme, setTheme } = useContext(ThemContext)
 
 
     if (loading) {
@@ -28,16 +30,16 @@ const Navbar = () => {
     const navbar = <>
         <li><Link to="/home">Home</Link></li>
         {/* <li><Link to="/price">Pricing</Link></li> */}
-        <li tabIndex={0}>
+        {/* <li tabIndex={0}>
             <Link to="/shop">
                 Themes
                 <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" /></svg>
             </Link>
-            <ul className="p-2">
+            <ul className="p-1">
                 <li><a>Product</a></li>
                 <li><a>Product Details</a></li>
             </ul>
-        </li>
+        </li> */}
         <li><Link to="/support">Support</Link></li>
         <li><Link to="/templates">Templates</Link></li>
         <li><Link to="/contact">Contact</Link></li>
@@ -48,7 +50,7 @@ const Navbar = () => {
                 Pages
                 <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" /></svg>
             </Link>
-            <ul className="p-2">
+            <ul className="p-1">
                 <li><Link to="/">About</Link> </li>
                 <li><Link to='/documentation'>Documentaiton</Link></li>
 
@@ -57,22 +59,37 @@ const Navbar = () => {
 
     //theme change
 
+    // const themeChange = () => {
+    //     if (isDark) {
+    //         localStorage.setItem('theme', 'dark')
+    //         setIsDark(false)
+    //     }
+    //     else {
+    //         localStorage.setItem('theme', 'light')
+    //         setIsDark(true)
+    //     }
+    // }
+
+
     const themeChange = () => {
+
         if (isDark) {
-            localStorage.setItem('theme', 'dark')
+            setTheme('night')
+            localStorage.setItem('theme', "night")
             setIsDark(false)
         }
         else {
+            setTheme('light')
             localStorage.setItem('theme', 'light')
             setIsDark(true)
         }
+
     }
 
 
-
     return (
-        <nav className='sticky top-0 px-3 z-50'>
-            <div className="flex justify-around bg-base-100 py-4">
+        <nav className='sticky top-0 px-5 z-50'>
+            <div className="flex justify-evenly bg-base-100 py-4">
                 <div className='flex '>
                     <div className="dropdown ">
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -129,7 +146,7 @@ const Navbar = () => {
                     </> : <>
                         <div className="">
 
-                            <Link to='/login' className=" font-semibold hover:bg-sky-700 hover:text-white hover:font-thin px-3 mr-2  text-xl py-1 rounded-md ">Log In</Link>
+                            <Link to='/login' className=" font-semibold hover:bg-sky-700 hover:text-white hover:font-thin px-1   text-xl py-1 rounded-md ">Log In</Link>
 
                             <div className="dropdown dropdown-end">
                                 <label tabIndex="0" className=" btn btn-primary text-white">
@@ -165,12 +182,46 @@ const Navbar = () => {
 
                         </div></>
                 }
-                <button onClick={themeChange}>Dark</button>
-                <div className='cursor-pointer'>
-                    < AiOutlineShoppingCart className='text-3xl inline-block ' />
-                    {/* <span className=' inline-block relative bg-indigo-500 text-white w-6 h-6 text-sm  text-center rounded-full   bottom-5 -ml-3 '>0 </span> */}
-                    <span className=' inline-block relative bg-indigo-500 text-white w-6 h-6 text-sm  text-center rounded-full   bottom-5 -ml-3 '>{cartProductNumber ? cartProductNumber.length : 0} </span>
+                <button className='text-2xl' onClick={themeChange}> {theme === "night" ? <BsFillMoonFill /> : <BsFillSunFill />}</button>
+
+                <div className="dropdown dropdown-bottom dropdown-end  ">
+
+                    <div tabIndex={0} className='cursor-pointer'>
+                        < AiOutlineShoppingCart className='text-3xl inline-block ' />
+                        {/* <span className=' inline-block relative bg-indigo-500 text-white w-6 h-6 text-sm  text-center rounded-full   bottom-5 -ml-3 '>0 </span> */}
+                        <span className=' inline-block relative bg-indigo-500 text-white w-6 h-6 text-sm  text-center rounded-full   bottom-5 -ml-3 '>{cartProductNumber ? cartProductNumber.length : 0} </span>
+                    </div>
+
+
+                    <ul tabIndex={0} className="dropdown-content menu shadow h-32  bg-base-100 rounded-box w-96 mr-20">
+
+                        {
+                            cartProducts && cartProducts.map(singleProduct => {
+                                const { name, img, price } = singleProduct;
+                                return <div className=''>
+                                    <div className="flex   mb-1  items-center space-x-3">
+                                        <div className="avatar">
+                                            <div className="mask  mask-squircle w-10 h-12">
+                                                <img src={img} alt="Avatar Tailwind CSS Component" />
+                                            </div>
+                                        </div>
+                                        <h2>{name}</h2>
+                                        <h2>${price}</h2>
+                                    </div>
+
+
+                                </div>
+                            })
+
+
+                        }
+
+
+                    </ul>
                 </div>
+
+
+
 
 
             </div>
