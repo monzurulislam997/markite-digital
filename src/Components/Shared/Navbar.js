@@ -2,6 +2,7 @@ import React from 'react';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/image/logo.png'
+import logo2 from '../../assets/image/logo2.png'
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
@@ -19,6 +20,7 @@ const Navbar = () => {
     const [isDark, setIsDark] = useState(true)
 
     const [cartProductNumber] = useCartNumber()
+
     const [cartProducts, setCartProducts] = useState(JSON.parse(localStorage.getItem('product')))
     const { theme, setTheme } = useContext(ThemContext)
 
@@ -88,7 +90,7 @@ const Navbar = () => {
 
 
     return (
-        <nav className='sticky top-0 px-5 z-50'>
+        <nav className='sticky top-0  z-50'>
             <div className="flex justify-evenly bg-base-100 py-4">
                 <div className='flex '>
                     <div className="dropdown ">
@@ -101,7 +103,9 @@ const Navbar = () => {
 
                     </div>
                     <Link to='/home' className=" lg:ml-20">
-                        <img className=' w-32 lg:mt-0 mt-2 hidden lg:block lg:w-40' src={logo} alt="" />
+                        {
+                            theme !== 'night' ? <img className=' w-32 lg:mt-0 mt-2 hidden lg:block lg:w-40' src={logo} alt="" /> : <img className=' w-32 lg:mt-0 mt-2 hidden lg:block lg:w-40' src={logo2} alt="" />
+                        }
                     </Link>
 
                 </div>
@@ -190,6 +194,7 @@ const Navbar = () => {
                         < AiOutlineShoppingCart className='text-3xl inline-block ' />
                         {/* <span className=' inline-block relative bg-indigo-500 text-white w-6 h-6 text-sm  text-center rounded-full   bottom-5 -ml-3 '>0 </span> */}
                         <span className=' inline-block relative bg-indigo-500 text-white w-6 h-6 text-sm  text-center rounded-full   bottom-5 -ml-3 '>{cartProductNumber ? cartProductNumber.length : 0} </span>
+
                     </div>
 
 

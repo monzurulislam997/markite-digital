@@ -8,7 +8,7 @@ import cartEmpty from '../../assets/image/cartEmpty.jpg'
 const Cart = () => {
     const [cartProducts, setCartProducts] = useState(JSON.parse(localStorage.getItem('product')))
     const [isEmpty, setIsEmpty] = useState(JSON.stringify(cartProducts) === '[]')
-    console.log(isEmpty);
+
 
     // const cartProducts = JSON.parse(localStorage.getItem('product'))
 

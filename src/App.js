@@ -27,7 +27,6 @@ export const ProductsNumberContext = createContext('productNumber')
 export const ThemContext = createContext(null)
 
 
-
 function App() {
 
   const [isLoading, setLoading] = useState(true)
@@ -37,6 +36,7 @@ function App() {
   useEffect(() => {
     setTheme(window.localStorage.getItem("theme"));
   }, []);
+
 
 
 

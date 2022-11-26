@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from './../../firebase.init';
 import Loadder from '../Lodder/Loadder';
-import useSignlnProduct from './../../hooks/useSingleProduct';
 import useCartNumber from './../../hooks/useCartNumber';
 import Swal from 'sweetalert2';
 import 'animate.css';
@@ -17,7 +16,7 @@ const TemplatesDashboard = () => {
     const [allTemplates, setAllTemplates] = useState([])
     const [isAdded, setIsAdded] = useState(false)
     const [setCartProductNumber] = useCartNumber()
-    const { theme } = useContext(ThemContext)
+    const { theme, setCartNumber } = useContext(ThemContext)
     // const [template, setTemplate] = useState({})
     // console.log(template);
     // ---------------------------------------------------------------------
@@ -108,6 +107,7 @@ const TemplatesDashboard = () => {
                                     cart.push(...productCart, allTemplate)
 
                                     localStorage.setItem('product', JSON.stringify(cart))
+
                                     return Swal.fire({
                                         title: 'Added To Your Cart',
                                         imageUrl: img,
