@@ -25,7 +25,7 @@ const FeatureTemplates = () => {
                 <div className='grid w-full mb-6  lg:grid-cols-3  my-3    '>
                     {
                         features.slice(0, 6).map(feature => <>
-                            <div className="card w-5/6 bg-base-100 mb-4 drop-shadow-2xl">
+                            <div className="card lg:w-5/6 w-full bg-base-100 mb-4 drop-shadow-2xl">
                                 <figure>
                                     <img className='p-3 rounded-lg transiton ease-in-out duration-1000	 hover:scale-150 hover:duration-1000' src={feature.img} alt="Shoes" />
                                 </figure>

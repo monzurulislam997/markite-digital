@@ -5,13 +5,13 @@ const Pricing = () => {
     return (
 
         <div className=''>
-            <div className='text-center py-8'>
+            <div className='text-center lg:py-8 py-5 '>
                 <h1 className=' text-4xl font-black'>Our Pricing <br /> We provide flexible plan
                 </h1>
                 <p className='text-slate-500 mt-1'>Thousands of Markit Brands have made the swich.</p>
 
             </div>
-            <div className='grid grid-cols-1  lg:grid-cols-4 px-24 ml-5'>
+            <div className='grid grid-cols-1  lg:grid-cols-4 px-12 lg:px-24  ml-5 lg:ml-5'>
 
                 <Fade left>
                     <div className="card w-64  mb-4 bg-indigo-500 border-1 text-neutral-content">

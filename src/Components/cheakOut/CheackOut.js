@@ -55,7 +55,7 @@ const CheackOut = () => {
 
     return (
 
-        <div className=' w-full flex ' >
+        <div className=' w-full flex dark:bg-red-500 ' >
             <div className=" w-1/2 border px-10 py-5 m-5 ">
                 <h2 className='text-2xl font-black'>Billing Details</h2>
                 <p className='text-sm'>Envato collects and uses personal data in accordance with our <a target="_blank" className='text-blue-500' href="/legal/market">Terms and Conditions</a> . By creating an account, you agree to our Terms and Conditions.</p>

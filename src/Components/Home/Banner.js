@@ -14,7 +14,7 @@ const Banner = () => {
 
         <div style={{ backgroundColor: '#eeedf2' }} className=' py-10 flex flex-col lg:flex-row '>
             <Bounce >
-                <div className='w-1/2 ml-3 lg:order-1    lg:p-20 order-2'>
+                <div className='lg:w-1/2 w-full ml-3 lg:order-1 p-8   lg:p-20 order-1'>
 
                     <h1 className='text-3xl lg:text-6xl  '>The World’s largest
 
@@ -32,7 +32,7 @@ const Banner = () => {
                             <span className='text-slate-500 text-xl'>< BiSearchAlt2 /> </span>  <input type="search" placeholder="Search for templates" className=" py-7  input focus:outline-0 w-full max-w-xs" />
                         </div>
 
-                        <button className=" border-none hover:bg-violet-800 text-white rounded-lg px-8  bg-indigo-700">Search</button>
+                        <button className=" border-none hover:bg-violet-800 text-white rounded-lg lg:px-8  px-3 bg-indigo-700">Search</button>
                     </div>
                 </div>
 
@@ -41,11 +41,11 @@ const Banner = () => {
             <div className='w-1/2  order-1 lg:order-2 '>
                 <div className='flex '>
                     <img className='w-2/6 absolute opacity-10 ml-16 mt-16' src={circle} alt="" />
-                    <div className='w-3/4 mt-20  relative'>
+                    <div className='lg:w-3/4 w-full lg:mt-20 mt-10  relative'>
                         <img className='box absolute mt-16 ' src={heroSquire} alt="" />
-                        <img className='hero-1 ml-7' src={hero1} alt="" />
+                        <img className='hero-1 w-full ml-7' src={hero1} alt="" />
                     </div>
-                    <div className='z-10 relative mt-5 right-20'>
+                    <div className='z-10 relative mt-5 hidden lg:block right-20'>
                         <img className='w-96 h-72 ' src={hero2} alt="" />
                         <img className='w-10 left-64 animate-bounce  relative z-10  ' src={heroCircle} alt="" />
                         <img className='w-72 right-12 mt-8 relative z-10  ' src={hero3} alt="" />

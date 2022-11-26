@@ -34,18 +34,18 @@ const Categories = () => {
                 <h1 className=' text-4xl font-black'>Browse <br />  Popular Categories</h1>
                 <p className='text-slate-500 mt-1'>Find over 7000 website templates and themes.</p>
             </div>
-                <Fade left>
-            <div className='grid grid-cols-4 py-5 mx-12'>
+            <Fade left>
+                <div className='grid lg:grid-cols-4 grid-cols-1 py-5 lg:mx-12 mx-3'>
 
                     {
 
                         catagories.map(catagorie => <>
 
-                            <div className="card w-64 bg-base-100 px-5 hover:border-2 hover:border-indigo-600 drop-shadow-2xl">
+                            <div className="card lg:w-64 w-64 bg-base-100 py-5 lg:my-2 my-4 lg:py-3 px-5 hover:border-2 hover:border-indigo-600 drop-shadow-2xl">
                                 <figure className="px-2 pt-10">
                                     <img src={catagorie.img} alt="Shoes" className="rounded-xl" />
                                 </figure>
-                                <div className="card-body card-actions text-center justify-center ">
+                                <div className="card-body card-actions text-center lg:mb-1 mb-3  justify-center ">
                                     <h1 className='card-title'>{catagorie.name}</h1>
                                     <button className="flex ml-2     hover:text-indigo-600 hover:font-bold">Explore More
 
@@ -56,8 +56,8 @@ const Categories = () => {
                             </div>
                         </>)
                     }
-            </div>
-                </Fade>
+                </div>
+            </Fade>
             <div className='text-center'>
                 <button className="py-3 px-8 hover:drop-shadow-2xl rounded-lg my-3 hover:text-cyan-400	 btn-primary">View All Catagories</button>
 

@@ -9,15 +9,15 @@ import profile4 from '../../assets/image/testi-4.jpg'
 const Support = () => {
     return (
         <div>
-            <div className='text-center py-16'>
-                <h1 className='text-5xl font-black'>Welcome! <br />
+            <div className='text-center lg:py-16 py-10'>
+                <h1 className='lg:text-5xl text-3xl font-black'>Welcome! <br />
                     How can we help?</h1>
                 <p>Our support forums and make your support experience better.
 
                 </p>
             </div>
 
-            <div className='grid grid-cols-3 py-8 gap-4 px-20 mx-10'>
+            <div className='grid grid-cols-1 lg:grid-cols-3  py-8 gap-4 lg:px-20 px-5 mx-10'>
                 <div className="card  bg-base-100 px-5 py-8 drop-shadow-2xl">
                     <figure className="px-2 pt-10">
                         <img src={img1} alt="Shoes" className="rounded-xl animate-pulse " />
@@ -97,9 +97,9 @@ const Support = () => {
                 <div className='text-center'>
                     <h1 className='text-4xl text-white mb-3 font-black'>Join The Community</h1>
                     <p className='text-slate-200'>Thousands of Markit Brands have made the swich.Text marketing with the customer in mind!  </p>
-                    <div className='py-3'> 
-                        <button className='px-10 rounded-md mr-3 border-2 py-2 bg-white text-indigo-900'> Start 14 Days FREE Trail   </button>
-                        <button className='px-10 border-2 py-2  text-white rounded-md  '>  Claim Free Demo  </button>
+                    <div className='py-3'>
+                        <button className='px-10  rounded-md lg:mr-3 mr-0 border-2 py-2 bg-white text-indigo-900'> Start 14 Days FREE Trail   </button>
+                        <button className='px-10 lg:my-0 my-2 border-2 py-2  text-white rounded-md  '>  Claim Free Demo  </button>
                         <p className='text-slate-200 py-4'>Start Sending Texts - No Credit Card Necessary </p>
                     </div>
 

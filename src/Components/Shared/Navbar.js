@@ -15,7 +15,7 @@ import { ProductsNumberContext } from './../../App';
 
 const Navbar = () => {
     const [user, loading] = useAuthState(auth)
-
+    const [isDark, setIsDark] = useState(true)
     const [cartProductNumber] = useCartNumber()
 
 
@@ -27,7 +27,7 @@ const Navbar = () => {
 
     const navbar = <>
         <li><Link to="/home">Home</Link></li>
-        <li><Link to="/price">Pricing</Link></li>
+        {/* <li><Link to="/price">Pricing</Link></li> */}
         <li tabIndex={0}>
             <Link to="/shop">
                 Themes
@@ -39,7 +39,7 @@ const Navbar = () => {
             </ul>
         </li>
         <li><Link to="/support">Support</Link></li>
-        <li><Link to="/buy">HTML</Link></li>
+        <li><Link to="/templates">Templates</Link></li>
         <li><Link to="/contact">Contact</Link></li>
         <li><Link to="/dashboard">Dashbord</Link></li>
 
@@ -55,12 +55,23 @@ const Navbar = () => {
             </ul>
         </li> </>
 
+    //theme change
 
+    const themeChange = () => {
+        if (isDark) {
+            localStorage.setItem('theme', 'dark')
+            setIsDark(false)
+        }
+        else {
+            localStorage.setItem('theme', 'light')
+            setIsDark(true)
+        }
+    }
 
 
 
     return (
-        <nav className='sticky top-0 z-50'>
+        <nav className='sticky top-0 px-3 z-50'>
             <div className="flex justify-around bg-base-100 py-4">
                 <div className='flex '>
                     <div className="dropdown ">
@@ -81,7 +92,7 @@ const Navbar = () => {
                 <div className="navbar-center hidden lg:flex">
 
 
-                    <ul className="menu menu-horizontal mr-12    ">
+                    <ul className="menu menu-horizontal    ">
                         {navbar}
 
                     </ul>
@@ -154,6 +165,7 @@ const Navbar = () => {
 
                         </div></>
                 }
+                <button onClick={themeChange}>Dark</button>
                 <div className='cursor-pointer'>
                     < AiOutlineShoppingCart className='text-3xl inline-block ' />
                     {/* <span className=' inline-block relative bg-indigo-500 text-white w-6 h-6 text-sm  text-center rounded-full   bottom-5 -ml-3 '>0 </span> */}

@@ -24,11 +24,26 @@ import MyOrder from './Components/dashboard/myOrder/MyOrder';
 import Statictics from './Components/dashboard/Statictics';
 import { createContext } from 'react';
 export const ProductsNumberContext = createContext('productNumber')
+export const ThemContext = createContext(null)
 
 function App() {
 
   const [isLoading, setLoading] = useState(true)
+  const [theme, setTheme] = useState('light')
 
+  const toggleTheme = () => {
+    setTheme((curr) => (curr === 'light' ? "dark" : "light"))
+
+  }
+
+  const currTheme = localStorage.getItem('theme');
+
+  useEffect(() => {
+
+    // setTheme(localStorage.getItem('theme'))
+    setTheme(currTheme)
+
+  }, [currTheme, localStorage.getItem('theme')])
 
 
   useEffect(() => {
@@ -40,25 +55,18 @@ function App() {
     return <Loadder></Loadder>
   }
 
-
-
-
-
-
   return (
 
-
-    <div >
+    <div className={theme === 'dark' ? "bg-black" : "bg-white"} >
       <div >
         <ScrollToTop bgColor='white' symbolColor='#16a34a' symbolSize='40px' strokeFillColor='#10b981' />
       </div>
-
 
       <Navbar></Navbar>
       <Routes>
         <Route path='/' element={<Home></Home>}></Route>
         <Route path='/home' element={<Home></Home>}></Route>
-        <Route path='/buy' element={<TemplatesDashboard></TemplatesDashboard>}></Route>
+        <Route path='/templates' element={<TemplatesDashboard></TemplatesDashboard>}></Route>
         <Route path='/checkout' element={<CheackOut></CheackOut>}></Route>
         <Route path='/cart' element={<Cart></Cart>}></Route>
         <Route path='/support' element={<Support></Support>}></Route>
@@ -80,7 +88,9 @@ function App() {
       </Routes>
       <ToastContainer />
 
+
     </div>
+
 
   );
 }

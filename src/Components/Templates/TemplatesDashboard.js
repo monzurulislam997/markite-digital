@@ -51,8 +51,8 @@ const TemplatesDashboard = () => {
                     </ul>
                 </div>
             </div>
-            <div className='grid py-10  grid-cols-4 '>
-                <div className=' bg-white drop-shadow-2xl h-96  ml-10 py-7 rounded-md px-5'>
+            <div className='grid lg:py-10 py-5  grid-cols-4 '>
+                <div className=' bg-white drop-shadow-2xl lg:block hidden h-96 ml-0 lg:ml-10 py-7 rounded-md px-5'>
                     <h4 className='text-md text-xl  font-semibold  pb-2 text-black'>Catagory </h4>
                     <hr className='mb-3 ' />
 
@@ -69,7 +69,7 @@ const TemplatesDashboard = () => {
                     }
 
                 </div>
-                <div className='col-span-3 w-11/12 mx-20  grid grid-cols-2 '>
+                <div className='col-span-3 w-11/12 lg:mx-20 mx-10 grid lg:grid-cols-2 grid-cols-1 '>
 
                     {
 
